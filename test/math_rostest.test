@@ -1,0 +1,7 @@
+<launch>
+  <test test-name="math_rostest"
+        pkg="ros_training"
+        type="math_rostest"
+        time-limit="5.0">
+  </test>
+</launch>
