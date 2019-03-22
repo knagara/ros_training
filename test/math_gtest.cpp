@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <ros_training/math_for_test.h>
 
-TEST(MathUtils, basicOperations){
+TEST(MathTest, mathTest){
   int a = 1;
   int b = 2;
   int expect = 3;

@@ -120,6 +120,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+add_executable(talker_for_test src/talker_for_test.cpp)
+target_link_libraries(talker_for_test ${catkin_LIBRARIES})
+
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/ros_training.cpp
@@ -206,6 +209,11 @@ if (CATKIN_ENABLE_TESTING)
     test/math_rostest.test
     test/math_rostest.cpp)
   target_link_libraries(math_rostest ${catkin_LIBRARIES})
+
+  add_rostest_gtest(talker_node_rostest
+    test/talker_node_rostest.test
+    test/talker_node_rostest.cpp)
+  target_link_libraries(talker_node_rostest ${catkin_LIBRARIES})
 endif()
 
 ## Add folders to be run by python nosetests

@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="ros_training" type="talker_for_test" name="talker_for_test" output="screen" />
+  <test test-name="talker_node_rostest" pkg="ros_training" type="talker_node_rostest" time-limit="5.0" />
+</launch>
