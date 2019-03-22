@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -54,11 +55,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -68,10 +68,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -107,6 +107,7 @@ catkin_package(
 #  LIBRARIES ros_training
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
+  CATKIN_DEPENDS message_runtime
 )
 
 ###########
@@ -122,6 +123,10 @@ include_directories(
 
 add_executable(talker_for_test src/talker_for_test.cpp)
 target_link_libraries(talker_for_test ${catkin_LIBRARIES})
+
+add_executable(add_two_ints_service src/add_two_ints_service.cpp)
+target_link_libraries(add_two_ints_service ${catkin_LIBRARIES})
+add_dependencies(add_two_ints_service ros_training_gencpp)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -214,6 +219,12 @@ if (CATKIN_ENABLE_TESTING)
     test/talker_node_rostest.test
     test/talker_node_rostest.cpp)
   target_link_libraries(talker_node_rostest ${catkin_LIBRARIES})
+
+  add_rostest_gtest(service_node_rostest
+    test/service_node_rostest.test
+    test/service_node_rostest.cpp)
+  target_link_libraries(service_node_rostest ${catkin_LIBRARIES})
+
 endif()
 
 ## Add folders to be run by python nosetests

@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="ros_training" type="add_two_ints_service" name="add_two_ints_service" output="screen" />
+  <test test-name="service_node_rostest" pkg="ros_training" type="service_node_rostest" time-limit="5.0" />
+</launch>
